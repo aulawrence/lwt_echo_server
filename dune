@@ -1,0 +1,4 @@
+(executables
+ (names tcp_echo udp_echo tcp_client udp_client)
+ (preprocess (pps lwt_ppx))
+ (libraries core lwt.unix))
