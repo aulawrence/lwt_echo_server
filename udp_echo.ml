@@ -46,7 +46,8 @@ let () =
   let server = 
     let sock = socket PF_INET SOCK_DGRAM 0 in
     let%lwt () = bind sock addr in
-    let%lwt () = Lwt_io.write_line Lwt_io.stdout (format_msg "Listening...") in
+    let%lwt () = Lwt_io.write_line Lwt_io.stdout 
+        (format_msg (sprintf "Listening on %s port %d ..." (Unix.Inet_addr.to_string listen_address) port)) in
     Lwt.finalize 
       (fun () ->
          Lwt.choose [Lwt.join (List.init 10 ~f:(fun i -> 
